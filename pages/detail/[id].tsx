@@ -2,7 +2,7 @@ import React from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import Image from 'next/image'
 import Layout from '../../components/Layout'
-import { Flex, Box, Stack, Heading, Text, HStack } from '@chakra-ui/react'
+import { Box, Stack, Heading, Text, HStack } from '@chakra-ui/react'
 import { formatDate, formatNumber } from '../../utils/functions'
 
 export interface IMovie {

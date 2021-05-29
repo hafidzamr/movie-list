@@ -1,6 +1,8 @@
 module.exports = {
   target: 'serverless',
-  trailingSlash: true,
+  images: {
+    domains: ['image.tmdb.org']
+  },
   future: {
     webpack5: true
   }
