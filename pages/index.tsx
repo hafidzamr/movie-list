@@ -6,11 +6,12 @@ import { Flex, Wrap, WrapItem, InputGroup, Input, Box, Center, Button } from '@c
 import { formatDate } from '../utils/functions'
 import Layout from '../components/Layout'
 import Card from '../components/UI/Card'
+import { DatePickerProps } from 'react-rainbow-components/components/DatePicker/'
 /**
  * This Module not yet support SSR
  * i think still on Discuss for supporting SSR https://github.com/nexxtway/react-rainbow/projects/1
  */
-const DatePicker = dynamic<any>(() => import('react-rainbow-components').then((module) => module.DatePicker), {
+const DatePicker = dynamic<DatePickerProps>(() => import('react-rainbow-components').then((module) => module.DatePicker), {
   ssr: false,
   loading: () => <p>Loading...</p>
 })
@@ -44,7 +45,9 @@ const Home = ({ movies }: Props) => {
 
   const handleDateFilter = (newDate: Date) => {
     setDateFilter(newDate)
-    const filterMovieByDate = movies.filter((movie) => formatDate(movie.release_date, 'dd MMM, yyyy') === formatDate(newDate, 'dd MMM, yyyy'))
+    const filterMovieByDate = movies.filter(
+      (movie) => formatDate(movie.release_date, 'dd MMM, yyyy') === formatDate(newDate, 'dd MMM, yyyy')
+    )
     setMovieList(filterMovieByDate)
   }
 
