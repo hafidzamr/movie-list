@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { Flex, Wrap, WrapItem, InputGroup, Input, Box, Center, Button } from '@chakra-ui/react'
 import { formatDate } from '../utils/functions'
@@ -41,13 +41,10 @@ type Props = InferGetServerSidePropsType<typeof getServerSideProps>
 const Home = ({ movies }: Props) => {
   const [dateFilter, setDateFilter] = useState<Date>(new Date())
   const [movieList, setMovieList] = useState(movies)
-  const router = useRouter()
 
   const handleDateFilter = (newDate: Date) => {
     setDateFilter(newDate)
-    const filterMovieByDate = movies.filter(
-      (movie) => formatDate(movie.release_date, 'dd MMM, yyyy') === formatDate(newDate, 'dd MMM, yyyy')
-    )
+    const filterMovieByDate = movies.filter((movie) => formatDate(movie.release_date, 'dd MMM, yyyy') === formatDate(newDate, 'dd MMM, yyyy'))
     setMovieList(filterMovieByDate)
   }
 
@@ -55,11 +52,6 @@ const Home = ({ movies }: Props) => {
     const keyowrd = event.target.value.toLocaleLowerCase()
     const filterResult = movies.filter((movie) => movie.title.toLowerCase().includes(keyowrd))
     setMovieList(filterResult)
-  }
-
-  const handleDetailMovie = (event: React.MouseEvent<HTMLElement>, id: string) => {
-    event.preventDefault()
-    router.push(`/detail/${id}`)
   }
 
   const handleResetFilterDate = () => {
@@ -90,9 +82,11 @@ const Home = ({ movies }: Props) => {
         <Wrap justify="center">
           {movieList.map((movie) => (
             <WrapItem paddingBottom={3} paddingX={1} key={movie.id}>
-              <a onClick={(event) => handleDetailMovie(event, movie.id)}>
-                <Card title={movie.title} image={movie.image} like={movie.like} release_date={movie.release_date} cursor="pointer" />
-              </a>
+              <Link href={`/detail/${movie.id}`}>
+                <a>
+                  <Card title={movie.title} image={movie.image} like={movie.like} release_date={movie.release_date} cursor="pointer" />
+                </a>
+              </Link>
             </WrapItem>
           ))}
         </Wrap>
