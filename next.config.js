@@ -3,6 +3,7 @@ module.exports = {
   images: {
     domains: ['image.tmdb.org']
   },
+  trailingSlash: true,
   future: {
     webpack5: true
   }
