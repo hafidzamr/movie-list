@@ -4,6 +4,6 @@ module.exports = {
     domains: ['image.tmdb.org']
   },
   future: {
-    webpack5: false
+    webpack5: true
   }
 }

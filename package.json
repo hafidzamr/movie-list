@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postbuild": "next-on-netlify",
+    "export": "next export",
     "format": "prettier --write \"./**/*.{ts,tsx}\"",
     "lint": "eslint \"**/*.{ts,tsx}\" \"*.config.js\""
   },
@@ -17,7 +17,6 @@
     "date-fns": "^2.21.3",
     "framer-motion": "^4",
     "next": "10.2.3",
-    "next-on-netlify": "^2.8.6",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-rainbow-components": "^1.25.0"
