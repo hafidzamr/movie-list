@@ -33,7 +33,7 @@ const Card: React.FC<ICard> = ({ release_date, title, image, like, cursor }) => 
       </Stack>
       <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
         <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-          <Text fontWeight={600}>Show Date: {formatDate(release_date, 'dd MMM, yyyy')}</Text>
+          <Text fontWeight={600}>Release Date: {formatDate(release_date, 'dd MMM, yyyy')}</Text>
           <Text color={'gray.500'}>Like: {formatNumber(like)}</Text>
         </Stack>
       </Stack>
