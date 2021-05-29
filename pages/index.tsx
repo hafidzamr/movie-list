@@ -37,6 +37,12 @@ export const getServerSideProps: GetServerSideProps<TMovie> = async () => {
   }
 }
 
+
+/**
+ * Make Props  automatically infer the types besad on getServerSideProps
+ * https://nextjs.org/docs/basic-features/data-fetching
+ */
+
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>
 
 const Home = ({ movies }: Props) => {
