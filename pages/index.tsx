@@ -24,11 +24,11 @@ export interface IMovie {
   like: number
 }
 
-type TMovie = {
+export interface IMovieDetail {
   movies: Array<IMovie>
 }
 
-export const getServerSideProps: GetServerSideProps<TMovie> = async () => {
+export const getServerSideProps: GetServerSideProps<IMovieDetail> = async () => {
   const response = await fetch('https://hafidzamr.tech/api/movie')
   const movies: Array<IMovie> = await response.json()
 
@@ -36,7 +36,6 @@ export const getServerSideProps: GetServerSideProps<TMovie> = async () => {
     props: { movies }
   }
 }
-
 
 /**
  * Make Props  automatically infer the types besad on getServerSideProps

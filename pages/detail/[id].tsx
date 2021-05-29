@@ -14,11 +14,11 @@ export interface IMovie {
   overview: string
 }
 
-type TMovie = {
+export interface IMovieDetail {
   movieDetail: IMovie
 }
 
-export const getServerSideProps: GetServerSideProps<TMovie> = async (context) => {
+export const getServerSideProps: GetServerSideProps<IMovieDetail> = async (context) => {
   const movieID = context.query.id
   const response = await fetch(`https://hafidzamr.tech/api/movie/${movieID}`)
   const movieDetail: IMovie = await response.json()
