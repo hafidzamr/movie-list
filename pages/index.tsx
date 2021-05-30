@@ -74,7 +74,7 @@ const Home = ({ movies }: Props): JSX.Element => {
     setMovieList(movies);
   };
 
-  const detailMovie = (event: React.MouseEvent, movieID) => {
+  const handleDetailMovie = (event: React.MouseEvent, movieID) => {
     event.preventDefault();
     router.push(`/detail/${movieID}`);
   };
@@ -101,13 +101,13 @@ const Home = ({ movies }: Props): JSX.Element => {
       ) : (
         <Wrap justify="center">
           {movieList.map((movie) => (
-            <Link href={`/detail/${movie.id}`}>
-              <a>
-                <WrapItem paddingBottom={3} paddingX={1} key={movie.id}>
-                  <Card title={movie.title} image={movie.image} like={movie.like} release_date={movie.release_date} cursor="pointer" />
-                </WrapItem>
-              </a>
-            </Link>
+            // <Link href={`/detail/${movie.id}`}>
+            //   <a>
+            <WrapItem paddingBottom={3} paddingX={1} key={movie.id} onClick={(event) => handleDetailMovie(event, movie.id)}>
+              <Card title={movie.title} image={movie.image} like={movie.like} release_date={movie.release_date} cursor="pointer" />
+            </WrapItem>
+            //   </a>
+            // </Link>
           ))}
         </Wrap>
       )}
