@@ -64,7 +64,8 @@ const Home = ({ movies }: Props) => {
     setMovieList(filterResult)
   }
 
-  const handleResetFilterDate = () => {
+  const handleResetFilterDate = (event: React.MouseEvent) => {
+    event.preventDefault()
     setDateFilter(new Date())
     setMovieList(movies)
   }
