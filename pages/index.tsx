@@ -30,10 +30,12 @@ export interface IMovieDetail {
 
 export const getServerSideProps: GetServerSideProps<IMovieDetail> = async () => {
   const response = await fetch('https://hafidzamr.tech/api/movie')
+  const errorCode = response.ok ? false : response.status
+
   const movies: Array<IMovie> = await response.json()
 
   return {
-    props: { movies }
+    props: { errorCode, movies }
   }
 }
 
