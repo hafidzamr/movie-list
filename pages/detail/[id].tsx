@@ -1,8 +1,8 @@
 import React from 'react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Image from 'next/image';
-import Layout from '../../components/Layout';
 import { Box, Stack, Heading, Text, HStack } from '@chakra-ui/react';
+import Layout from '../../components/Layout';
 import { formatDate, formatNumber } from '../../utils/functions';
 
 export interface IMovie {
@@ -34,29 +34,33 @@ export const getServerSideProps: GetServerSideProps<IMovieDetail> = async (conte
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
-const DetailMovie = ({ movieDetail }: Props) => {
-  return (
-    <Layout>
-      <HStack wrap="wrap" justify="center">
-        <Box justify="center">
-          <Image src={movieDetail.image} width={300} height={350} />
-        </Box>
+const DetailMovie = ({ movieDetail }: Props): JSX.Element => (
+  <Layout>
+    <HStack wrap="wrap" justify="center">
+      <Box justify="center">
+        <Image src={movieDetail.image} width={300} height={350} />
+      </Box>
 
-        <Box maxW={500}>
-          <Stack>
-            <Heading fontSize={'2xl'} fontFamily={'body'}>
-              {movieDetail.title}
-            </Heading>
-            <Text as="p" fontSize="sm" textAlign="justify">
-              {movieDetail.overview}
-            </Text>
-            <Text color={'gray.500'}>Release Date: {formatDate(movieDetail.release_date, 'dd MMM, yyyy')}</Text>
-            <Text color={'gray.500'}>Like: {formatNumber(movieDetail.like)}</Text>
-          </Stack>
-        </Box>
-      </HStack>
-    </Layout>
-  );
-};
+      <Box maxW={500}>
+        <Stack>
+          <Heading fontSize="2xl" fontFamily="body">
+            {movieDetail.title}
+          </Heading>
+          <Text as="p" fontSize="sm" textAlign="justify">
+            {movieDetail.overview}
+          </Text>
+          <Text color="gray.500">
+            Release Date:
+            {formatDate(movieDetail.release_date, 'dd MMM, yyyy')}
+          </Text>
+          <Text color="gray.500">
+            Like:
+            {formatNumber(movieDetail.like)}
+          </Text>
+        </Stack>
+      </Box>
+    </HStack>
+  </Layout>
+);
 
 export default DetailMovie;

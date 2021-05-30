@@ -3,10 +3,10 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Flex, Wrap, WrapItem, InputGroup, Input, Box, Center, Button } from '@chakra-ui/react';
+import { DatePickerProps } from 'react-rainbow-components/components/DatePicker/';
 import { formatDate } from '../utils/functions';
 import Layout from '../components/Layout';
 import Card from '../components/UI/Card';
-import { DatePickerProps } from 'react-rainbow-components/components/DatePicker/';
 /**
  * This Module not yet support SSR
  * i think still on Discuss for supporting SSR https://github.com/nexxtway/react-rainbow/projects/1
@@ -46,7 +46,7 @@ export const getServerSideProps: GetServerSideProps<IMovieDetail> = async () => 
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
-const Home = ({ movies }: Props) => {
+const Home = ({ movies }: Props): JSX.Element => {
   const [dateFilter, setDateFilter] = useState<Date>(new Date());
   const [movieList, setMovieList] = useState(movies);
 

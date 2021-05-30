@@ -1,3 +1,4 @@
+import React from 'react';
 import Document, { Html, DocumentContext, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
@@ -7,7 +8,7 @@ class MyDocument extends Document {
     return initialProps;
   }
 
-  render() {
+  render(): React.ReactElement {
     return (
       <Html lang="id">
         <Head>
