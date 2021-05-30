@@ -1,14 +1,14 @@
-import React from 'react'
-import Image from 'next/image'
-import { Box, Heading, Text, Stack, useColorModeValue } from '@chakra-ui/react'
-import { formatDate, formatNumber } from '../../../utils/functions'
+import React from 'react';
+import Image from 'next/image';
+import { Box, Heading, Text, Stack, useColorModeValue } from '@chakra-ui/react';
+import { formatDate, formatNumber } from '../../../utils/functions';
 
 export interface ICard {
-  release_date: Date
-  title: string
-  image: string
-  like: number
-  cursor?: 'pointer' | 'none'
+  release_date: Date;
+  title: string;
+  image: string;
+  like: number;
+  cursor?: 'pointer' | 'none';
 }
 
 const Card: React.FC<ICard> = ({ release_date, title, image, like, cursor }) => {
@@ -38,7 +38,7 @@ const Card: React.FC<ICard> = ({ release_date, title, image, like, cursor }) => 
         </Stack>
       </Stack>
     </Box>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

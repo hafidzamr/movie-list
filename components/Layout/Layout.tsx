@@ -1,7 +1,7 @@
-import React from 'react'
-import Head from 'next/head'
-import Navbar from './Navbar'
-import { Container } from '@chakra-ui/react'
+import React from 'react';
+import Head from 'next/head';
+import Navbar from './Navbar';
+import { Container } from '@chakra-ui/react';
 
 const Layout: React.FC = ({ children }) => {
   return (
@@ -14,7 +14,7 @@ const Layout: React.FC = ({ children }) => {
         {children}
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

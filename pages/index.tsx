@@ -1,74 +1,74 @@
-import React, { useState } from 'react'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import Link from 'next/link'
-import dynamic from 'next/dynamic'
-import { Flex, Wrap, WrapItem, InputGroup, Input, Box, Center, Button } from '@chakra-ui/react'
-import { formatDate } from '../utils/functions'
-import Layout from '../components/Layout'
-import Card from '../components/UI/Card'
-import { DatePickerProps } from 'react-rainbow-components/components/DatePicker/'
+import React, { useState } from 'react';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { Flex, Wrap, WrapItem, InputGroup, Input, Box, Center, Button } from '@chakra-ui/react';
+import { formatDate } from '../utils/functions';
+import Layout from '../components/Layout';
+import Card from '../components/UI/Card';
+import { DatePickerProps } from 'react-rainbow-components/components/DatePicker/';
 /**
  * This Module not yet support SSR
  * i think still on Discuss for supporting SSR https://github.com/nexxtway/react-rainbow/projects/1
  */
 const DatePicker = dynamic<DatePickerProps>(() => import('react-rainbow-components').then((module) => module.DatePicker), {
   ssr: false,
-  loading: () => <p>Loading...</p>
-})
+  loading: () => <p>Loading...</p>,
+});
 
 export interface IMovie {
-  id: string
-  release_date: Date
-  title: string
-  image: string
-  like: number
+  id: string;
+  release_date: Date;
+  title: string;
+  image: string;
+  like: number;
 }
 
 export interface IMovieDetail {
-  movies: Array<IMovie>
+  movies: Array<IMovie>;
 }
 
 export const getServerSideProps: GetServerSideProps<IMovieDetail> = async () => {
-  const response = await fetch('https://hafidzamr.tech/api/movie')
-  const errorCode = response.ok ? false : response.status
+  const response = await fetch('https://hafidzamr.tech/api/movie');
+  const errorCode = response.ok ? false : response.status;
 
-  const movies: Array<IMovie> = await response.json()
+  const movies: Array<IMovie> = await response.json();
 
   return {
-    props: { errorCode, movies }
-  }
-}
+    props: { errorCode, movies },
+  };
+};
 
 /**
  * Make Props  automatically infer the types besad on getServerSideProps
  * https://nextjs.org/docs/basic-features/data-fetching
  */
 
-type Props = InferGetServerSidePropsType<typeof getServerSideProps>
+type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 const Home = ({ movies }: Props) => {
-  const [dateFilter, setDateFilter] = useState<Date>(new Date())
-  const [movieList, setMovieList] = useState(movies)
+  const [dateFilter, setDateFilter] = useState<Date>(new Date());
+  const [movieList, setMovieList] = useState(movies);
 
   const handleDateFilter = (newDate: Date) => {
-    setDateFilter(newDate)
+    setDateFilter(newDate);
     const filterMovieByDate = movies.filter(
-      (movie) => formatDate(movie.release_date, 'dd MMM, yyyy') === formatDate(newDate, 'dd MMM, yyyy')
-    )
-    setMovieList(filterMovieByDate)
-  }
+      (movie) => formatDate(movie.release_date, 'dd MMM, yyyy') === formatDate(newDate, 'dd MMM, yyyy'),
+    );
+    setMovieList(filterMovieByDate);
+  };
 
   const handleFilterMovie = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const keyowrd = event.target.value.toLocaleLowerCase()
-    const filterResult = movies.filter((movie) => movie.title.toLowerCase().includes(keyowrd))
-    setMovieList(filterResult)
-  }
+    const keyowrd = event.target.value.toLocaleLowerCase();
+    const filterResult = movies.filter((movie) => movie.title.toLowerCase().includes(keyowrd));
+    setMovieList(filterResult);
+  };
 
   const handleResetFilterDate = (event: React.MouseEvent) => {
-    event.preventDefault()
-    setDateFilter(new Date())
-    setMovieList(movies)
-  }
+    event.preventDefault();
+    setDateFilter(new Date());
+    setMovieList(movies);
+  };
 
   return (
     <Layout>
@@ -103,7 +103,7 @@ const Home = ({ movies }: Props) => {
         </Wrap>
       )}
     </Layout>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

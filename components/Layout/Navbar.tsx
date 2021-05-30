@@ -1,5 +1,5 @@
-import { Heading, Flex } from '@chakra-ui/react'
-import Link from 'next/link'
+import { Heading, Flex } from '@chakra-ui/react';
+import Link from 'next/link';
 const Navbar = () => {
   return (
     <Flex as="nav" align="center" justify="space-between" wrap="wrap" paddingY={4} paddingX={6} background="red.500" color="white">
@@ -11,7 +11,7 @@ const Navbar = () => {
         </Link>
       </Flex>
     </Flex>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

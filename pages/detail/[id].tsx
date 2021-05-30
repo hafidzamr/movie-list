@@ -1,38 +1,38 @@
-import React from 'react'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import Image from 'next/image'
-import Layout from '../../components/Layout'
-import { Box, Stack, Heading, Text, HStack } from '@chakra-ui/react'
-import { formatDate, formatNumber } from '../../utils/functions'
+import React from 'react';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import Image from 'next/image';
+import Layout from '../../components/Layout';
+import { Box, Stack, Heading, Text, HStack } from '@chakra-ui/react';
+import { formatDate, formatNumber } from '../../utils/functions';
 
 export interface IMovie {
-  id: string
-  release_date: Date
-  title: string
-  image: string
-  like: number
-  overview: string
+  id: string;
+  release_date: Date;
+  title: string;
+  image: string;
+  like: number;
+  overview: string;
 }
 
 export interface IMovieDetail {
-  movieDetail: IMovie
+  movieDetail: IMovie;
 }
 
 export const getServerSideProps: GetServerSideProps<IMovieDetail> = async (context) => {
-  const movieID = context.query.id
-  const response = await fetch(`https://hafidzamr.tech/api/movie/${movieID}`)
-  const movieDetail: IMovie = await response.json()
+  const movieID = context.query.id;
+  const response = await fetch(`https://hafidzamr.tech/api/movie/${movieID}`);
+  const movieDetail: IMovie = await response.json();
   return {
-    props: { movieDetail }
-  }
-}
+    props: { movieDetail },
+  };
+};
 
 /**
  * Make Props  automatically infer the types besad on getServerSideProps
  * https://nextjs.org/docs/basic-features/data-fetching
  */
 
-type Props = InferGetServerSidePropsType<typeof getServerSideProps>
+type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 const DetailMovie = ({ movieDetail }: Props) => {
   return (
@@ -56,7 +56,7 @@ const DetailMovie = ({ movieDetail }: Props) => {
         </Box>
       </HStack>
     </Layout>
-  )
-}
+  );
+};
 
-export default DetailMovie
+export default DetailMovie;
