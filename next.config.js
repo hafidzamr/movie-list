@@ -6,5 +6,4 @@ module.exports = {
   future: {
     webpack5: true,
   },
-  experimental: { css: true },
 };

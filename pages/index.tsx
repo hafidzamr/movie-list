@@ -7,6 +7,8 @@ import { DatePickerProps } from 'react-rainbow-components/components/DatePicker/
 import { formatDate } from '../utils/functions';
 import Layout from '../components/Layout';
 import Card from '../components/UI/Card';
+import { useRouter } from 'next/router';
+
 /**
  * This Module not yet support SSR
  * i think still on Discuss for supporting SSR https://github.com/nexxtway/react-rainbow/projects/1
@@ -50,6 +52,8 @@ const Home = ({ movies }: Props): JSX.Element => {
   const [dateFilter, setDateFilter] = useState<Date>(new Date());
   const [movieList, setMovieList] = useState(movies);
 
+  const router = useRouter();
+
   const handleDateFilter = (newDate: Date) => {
     setDateFilter(newDate);
     const filterMovieByDate = movies.filter(
@@ -68,6 +72,11 @@ const Home = ({ movies }: Props): JSX.Element => {
     event.preventDefault();
     setDateFilter(new Date());
     setMovieList(movies);
+  };
+
+  const detailMovie = (event: React.MouseEvent, movieID) => {
+    event.preventDefault();
+    router.push(`/detail/${movieID}`);
   };
 
   return (
@@ -92,13 +101,13 @@ const Home = ({ movies }: Props): JSX.Element => {
       ) : (
         <Wrap justify="center">
           {movieList.map((movie) => (
-            <WrapItem paddingBottom={3} paddingX={1} key={movie.id}>
-              <Link href={`/detail/${movie.id}`}>
-                <a>
+            <Link href={`/detail/${movie.id}`}>
+              <a>
+                <WrapItem paddingBottom={3} paddingX={1} key={movie.id}>
                   <Card title={movie.title} image={movie.image} like={movie.like} release_date={movie.release_date} cursor="pointer" />
-                </a>
-              </Link>
-            </WrapItem>
+                </WrapItem>
+              </a>
+            </Link>
           ))}
         </Wrap>
       )}
